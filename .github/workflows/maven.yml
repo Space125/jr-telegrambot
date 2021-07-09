@@ -23,10 +23,10 @@ jobs:
           distribution: 'adopt'
       - name: Test
         env:
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.TB_SECRET_TOKEN }}
         run: |
           echo ${#token}
       - name: Build with Maven
         env:
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.TB_SECRET_TOKEN }}
         run: mvn -B package --file pom.xml
