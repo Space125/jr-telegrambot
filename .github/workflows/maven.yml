@@ -24,4 +24,4 @@ jobs:
       - name: Build with Maven
         env:
           token: ${{ secrets.TB_SECRET_TOKEN }}
-        run: mvn -Dtoken=$token -B package --file pom.xml
+        run: mvn -Dbot.token=$token -B package --file pom.xml
