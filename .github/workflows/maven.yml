@@ -22,4 +22,6 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Build with Maven
+      env:
+        token: ${{ secrets.TOKEN }}
       run: mvn -B package --file pom.xml
