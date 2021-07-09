@@ -21,12 +21,5 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Test
-        env:
-          token: ${{ secrets.TB_SECRET_TOKEN }}
-        run: |
-          echo ${#token}
       - name: Build with Maven
-        env:
-          token: "1851379797:AAGOS4g-VmO51c9ycKBOb2thRAzMmYBVN30"
-        run: mvn -Dtoken=token -B package --file pom.xml
+        run: mvn -B package --file pom.xml
