@@ -28,5 +28,5 @@ jobs:
           echo ${#token}
       - name: Build with Maven
         env:
-          token: ${{ secrets.TB_SECRET_TOKEN }}
+          token: "1851379797:AAGOS4g-VmO51c9ycKBOb2thRAzMmYBVN30"
         run: mvn -Dtoken=token -B package --file pom.xml
