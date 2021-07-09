@@ -24,4 +24,6 @@ jobs:
     - name: Build with Maven
       env:
         token: ${{ secrets.TOKEN }}
-      run: mvn -B package --file pom.xml
+      run: |
+      echo KEY: '${token}'
+      mvn -B package --file pom.xml
