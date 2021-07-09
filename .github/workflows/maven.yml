@@ -23,6 +23,5 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TB_SECRET_TOKEN: ${{ secrets.TOKEN }}
-        run: mvn -Dbot.token=$TB_SECRET_TOKEN -B package --file pom.xml
+          TB_SECRET_TOKEN: ${{ secrets.JRTB_SECRET_TOKEN }}
+        run: mvn -B package --file pom.xml
