@@ -23,5 +23,5 @@ jobs:
         distribution: 'adopt'
     - name: Build with Maven
       env:
-        TOKEN: ${{ secrets.TOKEN }}
+        token: ${{ secrets.TOKEN }}
       run: mvn -B package --file pom.xml
