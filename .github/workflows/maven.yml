@@ -25,5 +25,4 @@ jobs:
       env:
         token: ${{ secrets.TOKEN }}
       run: |
-      echo '${token}'
       mvn -B package --file pom.xml
