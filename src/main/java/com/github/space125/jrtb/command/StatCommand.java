@@ -6,27 +6,22 @@ import lombok.AllArgsConstructor;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
- * Command Stop implementation of {@link Command}
+ * Command Statistics implementation of {@link Command}
  *
- * @author Ivan Kurilov on 09.07.2021
+ * @author Ivan Kurilov on 28.07.2021
  */
 @AllArgsConstructor
-public class StopCommand implements Command {
+public class StatCommand implements Command{
 
     private final SendBotMessageService sendBotMessageService;
     private final TelegramUserService telegramUserService;
 
-    public static final String STOP_MESSAGE = "Деактивировал все ваши подписки \uD83D\uDE1F.";
+    public static final String STAT_MESSAGE = "JavaRush Telegram Bot используют %s пользователей";
 
     @Override
     public void execute(Update update) {
+        int activeUserCount = telegramUserService.retrieveAllActiveUsers().size();
         String chatId = update.getMessage().getChatId().toString();
-        sendBotMessageService.sendMessage(chatId, STOP_MESSAGE);
-        telegramUserService.findByChatId(chatId).ifPresent(
-                user -> {
-                    user.setActive(false);
-                    telegramUserService.save(user);
-                }
-        );
+        sendBotMessageService.sendMessage(chatId, String.format(STAT_MESSAGE, activeUserCount));
     }
 }
