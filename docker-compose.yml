@@ -1,9 +1,20 @@
 version: '3.1'
 
 services:
-  jrtb:
+  jrtb-bot:
+    depends_on:
+      - jrtb-db
     build:
       context: .
     env_file:
-      - ./.env/jrtb.env
+      - ./.env/jrtb-bot.env
     restart: always
+  jrtb-db:
+    image: mysql
+    restart: always
+    env_file:
+      - ./.env/jrtb-db-prod.env
+    ports:
+      - '3309:3306'
+    expose:
+      - '3309'
