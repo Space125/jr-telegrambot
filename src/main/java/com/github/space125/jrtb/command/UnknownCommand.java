@@ -4,6 +4,8 @@ import com.github.space125.jrtb.service.SendBotMessageService;
 import lombok.AllArgsConstructor;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import static com.github.space125.jrtb.command.CommandUtils.getChatId;
+
 /**
  * Command Unknown implementation of {@link Command}
  *
@@ -18,6 +20,6 @@ public class UnknownCommand implements Command {
 
     @Override
     public void execute(Update update) {
-        sendBotMessageService.sendMessage(update.getMessage().getChatId().toString(), UNKNOWN_MESSAGE);
+        sendBotMessageService.sendMessage(getChatId(update), UNKNOWN_MESSAGE);
     }
 }

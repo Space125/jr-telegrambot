@@ -6,6 +6,8 @@ import com.github.space125.jrtb.service.TelegramUserService;
 import lombok.AllArgsConstructor;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import static com.github.space125.jrtb.command.CommandUtils.getChatId;
+
 /**
  * Command Start implementation of {@link Command}
  *
@@ -24,7 +26,7 @@ public class StartCommand implements Command {
 
     @Override
     public void execute(Update update) {
-        String chatId = update.getMessage().getChatId().toString();
+        String chatId = getChatId(update);
         telegramUserService.findByChatId(chatId).ifPresentOrElse(
                 user -> {
                     user.setActive(true);

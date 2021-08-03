@@ -1,7 +1,9 @@
 package com.github.space125.jrtb.repository;
 
+import com.github.space125.jrtb.repository.entity.GroupSub;
 import com.github.space125.jrtb.repository.entity.TelegramUser;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -22,6 +24,7 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @ActiveProfiles("test")
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = NONE)
+@DisplayName("Integration-level testing for TelegramUserRepository")
 public class TelegramUserRepositoryIT {
 
     @Autowired
@@ -52,5 +55,21 @@ public class TelegramUserRepositoryIT {
         //then
         Assertions.assertTrue(savedUser.isPresent());
         Assertions.assertEquals(telegramUser, savedUser.get());
+    }
+
+    @Sql(scripts = {"/sql/clearDbs.sql", "/sql/groupSubsForUser.sql"})
+    @Test
+    public void shouldProperlyGetAllGroupSubsForUser(){
+        //when
+        Optional<TelegramUser> userFromDb = telegramUserRepository.findById("1");
+
+        //then
+        Assertions.assertTrue(userFromDb.isPresent());
+        List<GroupSub> groupSubs = userFromDb.get().getGroupSubs();
+        for (int i = 0; i < groupSubs.size(); i++) {
+            Assertions.assertEquals(i + 1, groupSubs.get(i).getId());
+            Assertions.assertEquals(i + 1, groupSubs.get(i).getLastArticleId());
+            Assertions.assertEquals(String.format("g%s", i + 1), groupSubs.get(i).getTitle());
+        }
     }
 }
