@@ -52,9 +52,9 @@ class ListGroupSubCommandTest {
         Mockito.when(message.getText()).thenReturn(String.valueOf(LIST_GROUP_SUB.getCommandName()));
         update.setMessage(message);
 
-        String collectedGroup = "Я нашел все подписки на группы: \n\n" +
+        String collectedGroup = "Я нашел все подписки на группы:\n\n" +
                 telegramUser.getGroupSubs().stream()
-                        .map(group -> String.format("Группа %s, ID = %s \n", group.getTitle(), group.getId()))
+                        .map(group -> String.format("Группа %s, ID = %s\n", group.getTitle(), group.getId()))
                         .collect(Collectors.joining());
 
 

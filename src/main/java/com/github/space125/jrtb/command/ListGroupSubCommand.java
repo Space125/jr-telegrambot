@@ -32,9 +32,9 @@ public class ListGroupSubCommand implements Command {
             message = "Пока нет подписок на группы. Чтобы добавить подписку используй команду /addgroupsub";
         } else {
             String collectedGroup = telegramUser.getGroupSubs().stream()
-                    .map(group -> String.format("Группа %s, ID = %s \n", group.getTitle(), group.getId()))
+                    .map(group -> String.format("Группа %s, ID = %s\n", group.getTitle(), group.getId()))
                     .collect(Collectors.joining());
-            message = String.format("Я нашел все подписки на группы: \n\n %s", collectedGroup);
+            message = String.format("Я нашел все подписки на группы:\n\n%s", collectedGroup);
         }
 
         sendBotMessageService.sendMessage(telegramUser.getChatId(), message);
