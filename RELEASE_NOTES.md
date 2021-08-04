@@ -1,5 +1,12 @@
 # Release Notes
 
+## 0.6.0-SNAPSHOT
+
+* JRTB-4: As a user, I want to get new articles no later than 20 minutes since the article was created.
+* JRTB-7: As a User, I want to remove group subscription from my subscriptions.
+* JRTB-8: added ability to set inactive telegram user.
+* JRTB-9: added ability to set active user and/or start using it.
+
 ## 0.5.0-SNAPSHOT
 
 *   JRTB-5: added ability to subscribe on group.

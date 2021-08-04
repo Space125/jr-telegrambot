@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
  * @author Ivan Kurilov on 10.07.2021
  */
 @DisplayName("Unit-level testing for StopCommand")
-public class StopCommandTest extends AbstractCommandTest{
+class StopCommandTest extends AbstractCommandTest{
 
     @Override
     String getCommandName() {

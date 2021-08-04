@@ -9,11 +9,26 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Ivan Kurilov on 09.07.2021
  */
-
 @Configuration
 @ConfigurationProperties(prefix = "bot")
 @Data
 public class BotProperties {
+
+    /**
+     * Username for the registration Telegram Bot
+     */
     private String username;
+
+    /**
+     * Token of the registration.
+     */
     private String token;
+
+
+    /**
+     * Recount of new articles
+     */
+    private String recountNewArticle;
+
+
 }

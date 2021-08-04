@@ -21,11 +21,11 @@ public interface TelegramUserService {
     void save(TelegramUser telegramUser);
 
     /**
-     * Retrieve all active {@link TelegramUser}.
+     * Find all active {@link TelegramUser}.
      *
      * @return the list of the active {@link TelegramUser} objects.
      */
-    List<TelegramUser> retrieveAllActiveUsers();
+    List<TelegramUser> findAllActiveUsers();
 
     /**
      * Find {@link TelegramUser} by chatId.

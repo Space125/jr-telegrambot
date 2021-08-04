@@ -17,6 +17,7 @@ public enum CommandName {
     STAT("/stat"),
     ADD_GROUP_SUB("/addgroupsub"),
     LIST_GROUP_SUB("/listgroupsub"),
+    DEL_GROUP_SUB("/delgroupsub"),
     NO("no command");
 
     @Getter
