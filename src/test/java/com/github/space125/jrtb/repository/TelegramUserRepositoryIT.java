@@ -25,14 +25,14 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = NONE)
 @DisplayName("Integration-level testing for TelegramUserRepository")
-public class TelegramUserRepositoryIT {
+class TelegramUserRepositoryIT {
 
     @Autowired
     private TelegramUserRepository telegramUserRepository;
 
     @Sql(scripts = {"/sql/clearDbs.sql", "/sql/telegramUsers.sql"})
     @Test
-    public void shouldProperlyFindAllActiveUsers(){
+    void shouldProperlyFindAllActiveUsers() {
         //when
         List<TelegramUser> telegramUsers = telegramUserRepository.findAllByActiveTrue();
 
@@ -42,7 +42,7 @@ public class TelegramUserRepositoryIT {
 
     @Sql(scripts = {"/sql/clearDbs.sql"})
     @Test
-    public void shouldProperlySaveTelegramUser(){
+    void shouldProperlySaveTelegramUser() {
         //given
         TelegramUser telegramUser = new TelegramUser();
         telegramUser.setChatId("1234567890");
@@ -59,7 +59,7 @@ public class TelegramUserRepositoryIT {
 
     @Sql(scripts = {"/sql/clearDbs.sql", "/sql/groupSubsForUser.sql"})
     @Test
-    public void shouldProperlyGetAllGroupSubsForUser(){
+    void shouldProperlyGetAllGroupSubsForUser() {
         //when
         Optional<TelegramUser> userFromDb = telegramUserRepository.findById("1");
 

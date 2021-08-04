@@ -2,6 +2,7 @@ package com.github.space125.jrtb.repository.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,10 +13,12 @@ import java.util.Objects;
  * @author Ivan Kurilov on 02.08.2021
  */
 @Data
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "users")
 @Entity
 @Table(name = "group_sub")
+@ToString
 public class GroupSub {
+
     @Id
     private Integer id;
 

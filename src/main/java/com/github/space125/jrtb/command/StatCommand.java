@@ -13,7 +13,7 @@ import static com.github.space125.jrtb.command.CommandUtils.getChatId;
  * @author Ivan Kurilov on 28.07.2021
  */
 @AllArgsConstructor
-public class StatCommand implements Command{
+public class StatCommand implements Command {
 
     private final SendBotMessageService sendBotMessageService;
     private final TelegramUserService telegramUserService;
@@ -22,7 +22,7 @@ public class StatCommand implements Command{
 
     @Override
     public void execute(Update update) {
-        int activeUserCount = telegramUserService.retrieveAllActiveUsers().size();
+        int activeUserCount = telegramUserService.findAllActiveUsers().size();
         String chatId = getChatId(update);
         sendBotMessageService.sendMessage(chatId, String.format(STAT_MESSAGE, activeUserCount));
     }

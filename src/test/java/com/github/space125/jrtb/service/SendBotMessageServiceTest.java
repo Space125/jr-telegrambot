@@ -18,13 +18,13 @@ class SendBotMessageServiceTest {
     private JavaRushTelegramBot javaRushTelegramBot;
 
     @BeforeEach
-    public void init() {
+    void init() {
         javaRushTelegramBot = Mockito.mock(JavaRushTelegramBot.class);
         sendBotMessageService = new SendBotMessageServiceImpl(javaRushTelegramBot);
     }
 
     @Test
-    public void shouldProperlySendMessage() throws TelegramApiException {
+    void shouldProperlySendMessage() throws TelegramApiException {
         //given
         String chatId = "test_chat_id";
         String message = "test message";

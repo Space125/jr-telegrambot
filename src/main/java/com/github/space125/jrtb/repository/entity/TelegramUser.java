@@ -1,6 +1,8 @@
 package com.github.space125.jrtb.repository.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,7 +15,10 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "tg_user")
+@EqualsAndHashCode(exclude = "groupSubs")
+@ToString
 public class TelegramUser {
+
     @Id
     @Column(name = "chat_id")
     private String chatId;

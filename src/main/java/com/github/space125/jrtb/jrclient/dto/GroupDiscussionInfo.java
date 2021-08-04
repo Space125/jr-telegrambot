@@ -13,6 +13,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class GroupDiscussionInfo extends GroupInfo {
+
     private Integer commentsCount;
     private UserDiscussionInfo userDiscussionInfo;
 }

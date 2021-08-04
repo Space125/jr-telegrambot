@@ -13,7 +13,6 @@ import static com.github.space125.jrtb.command.CommandUtils.getChatId;
  *
  * @author Ivan Kurilov on 09.07.2021
  */
-
 @AllArgsConstructor
 public class StartCommand implements Command {
 

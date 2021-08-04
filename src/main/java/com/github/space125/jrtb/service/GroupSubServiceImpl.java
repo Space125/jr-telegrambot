@@ -1,5 +1,6 @@
 package com.github.space125.jrtb.service;
 
+import com.github.space125.jrtb.jrclient.JavaRushGroupClient;
 import com.github.space125.jrtb.jrclient.dto.GroupDiscussionInfo;
 import com.github.space125.jrtb.repository.GroupSubRepository;
 import com.github.space125.jrtb.repository.entity.GroupSub;
@@ -8,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.NotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -21,6 +23,7 @@ public class GroupSubServiceImpl implements GroupSubService {
 
     private final TelegramUserService telegramUserService;
     private final GroupSubRepository groupSubRepository;
+    private final JavaRushGroupClient javaRushGroupClient;
 
     @Override
     public GroupSub save(String chatId, GroupDiscussionInfo groupDiscussionInfo) {
@@ -39,10 +42,26 @@ public class GroupSubServiceImpl implements GroupSubService {
         } else {
             groupSub = new GroupSub();
             groupSub.addUser(telegramUser);
+            groupSub.setLastArticleId(javaRushGroupClient.findLastArticleId(groupDiscussionInfo.getId()));
             groupSub.setId(groupDiscussionInfo.getId());
             groupSub.setTitle(groupDiscussionInfo.getTitle());
         }
 
         return groupSubRepository.save(groupSub);
+    }
+
+    @Override
+    public GroupSub save(GroupSub groupSub) {
+        return groupSubRepository.save(groupSub);
+    }
+
+    @Override
+    public Optional<GroupSub> findById(Integer groupId) {
+        return groupSubRepository.findById(groupId);
+    }
+
+    @Override
+    public List<GroupSub> findAll() {
+        return groupSubRepository.findAll();
     }
 }

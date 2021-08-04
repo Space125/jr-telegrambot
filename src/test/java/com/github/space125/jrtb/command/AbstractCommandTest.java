@@ -17,6 +17,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
  * @author Ivan Kurilov on 10.07.2021
  */
 abstract class AbstractCommandTest {
+
     protected JavaRushTelegramBot javaRushTelegramBot = Mockito.mock(JavaRushTelegramBot.class);
     protected SendBotMessageService sendBotMessageService = new SendBotMessageServiceImpl(javaRushTelegramBot);
     protected TelegramUserService telegramUserService = Mockito.mock(TelegramUserService.class);
@@ -28,15 +29,11 @@ abstract class AbstractCommandTest {
     abstract Command getCommand();
 
     @Test
-    public void shouldProperlyExecuteCommand() throws TelegramApiException {
+    void shouldProperlyExecuteCommand() throws TelegramApiException {
         //given
         Long chatId = 1234567824356L;
 
-        Update update = new Update();
-        Message message = Mockito.mock(Message.class);
-        Mockito.when(message.getChatId()).thenReturn(chatId);
-        Mockito.when(message.getText()).thenReturn(getCommandName());
-        update.setMessage(message);
+        Update update = prepareUpdate(chatId, getCommandName());
 
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
@@ -48,5 +45,14 @@ abstract class AbstractCommandTest {
 
         //then
         Mockito.verify(javaRushTelegramBot).execute(sendMessage);
+    }
+
+    public static Update prepareUpdate(Long chatId, String commandName) {
+        Update update = new Update();
+        Message message = Mockito.mock(Message.class);
+        Mockito.when(message.getChatId()).thenReturn(chatId);
+        Mockito.when(message.getText()).thenReturn(commandName);
+        update.setMessage(message);
+        return update;
     }
 }

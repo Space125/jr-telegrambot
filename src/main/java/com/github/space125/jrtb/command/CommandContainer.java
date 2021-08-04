@@ -14,14 +14,14 @@ import static com.github.space125.jrtb.command.CommandName.*;
  * @author Ivan Kurilov on 09.07.2021
  */
 public class CommandContainer {
+
     private final ImmutableMap<String, Command> commandMap;
     private final Command unknownCommand;
 
     public CommandContainer(SendBotMessageService sendBotMessageService,
                             JavaRushGroupClient javaRushGroupClient,
                             TelegramUserService telegramUserService,
-                            GroupSubService groupSubService)
-    {
+                            GroupSubService groupSubService) {
         commandMap = ImmutableMap.<String, Command>builder()
                 .put(START.getCommandName(), new StartCommand(sendBotMessageService, telegramUserService))
                 .put(STOP.getCommandName(), new StopCommand(sendBotMessageService, telegramUserService))
@@ -30,6 +30,7 @@ public class CommandContainer {
                 .put(STAT.getCommandName(), new StatCommand(sendBotMessageService, telegramUserService))
                 .put(ADD_GROUP_SUB.getCommandName(), new AddGroupSubCommand(sendBotMessageService, javaRushGroupClient, groupSubService))
                 .put(LIST_GROUP_SUB.getCommandName(), new ListGroupSubCommand(sendBotMessageService, telegramUserService))
+                .put(DEL_GROUP_SUB.getCommandName(), new DelGroupSubCommand(sendBotMessageService, groupSubService, telegramUserService))
                 .build();
 
         unknownCommand = new UnknownCommand(sendBotMessageService);

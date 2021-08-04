@@ -24,7 +24,7 @@ import static org.apache.commons.lang3.StringUtils.isNumeric;
  * @author Ivan Kurilov on 02.08.2021
  */
 @AllArgsConstructor
-public class AddGroupSubCommand implements Command{
+public class AddGroupSubCommand implements Command {
 
     private final SendBotMessageService sendBotMessageService;
     private final JavaRushGroupClient javaRushGroupClient;
@@ -32,15 +32,15 @@ public class AddGroupSubCommand implements Command{
 
     @Override
     public void execute(Update update) {
-        if(getMessage(update).equalsIgnoreCase(ADD_GROUP_SUB.getCommandName())){
+        if (getMessage(update).equalsIgnoreCase(ADD_GROUP_SUB.getCommandName())) {
             sendGroupIdList(getChatId(update));
             return;
         }
         String groupId = getMessage(update).split(SPACE)[1];
         String chatId = getChatId(update);
-        if(isNumeric(groupId)){
+        if (isNumeric(groupId)) {
             GroupDiscussionInfo groupById = javaRushGroupClient.getGroupById(Integer.parseInt(groupId));
-            if(isNull(groupById.getId())){
+            if (isNull(groupById.getId())) {
                 sendGroupNotFound(chatId, groupId);
             }
             GroupSub savedGroupSub = groupSubService.save(chatId, groupById);
@@ -60,7 +60,7 @@ public class AddGroupSubCommand implements Command{
                 .map(group -> String.format("%s - %s \n", group.getTitle(), group.getId()))
                 .collect(Collectors.joining());
 
-        String message = "Чтобы подписаться на группу - передай комадну вместе с ID группы. \n" +
+        String message = "Чтобы подписаться на группу - передай команду вместе с ID группы. \n" +
                 "Например: /addGroupSub 16. \n\n" +
                 "я подготовил список всех групп - выбирай какую хочешь :) \n\n" +
                 "имя группы - ID группы \n\n" +

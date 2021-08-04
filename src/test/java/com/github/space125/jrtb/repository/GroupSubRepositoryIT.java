@@ -25,14 +25,14 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @DisplayName("Integration-level testing for GroupSubRepository")
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = NONE)
-public class GroupSubRepositoryIT {
+class GroupSubRepositoryIT {
 
     @Autowired
     private GroupSubRepository groupSubRepository;
 
     @Sql(scripts = {"/sql/clearDbs.sql", "/sql/usersForGroupSub.sql"})
     @Test
-    public void shouldProperlyGetAllUsersForGroupSub() {
+    void shouldProperlyGetAllUsersForGroupSub() {
         //when
         Optional<GroupSub> groupSubFromDb = groupSubRepository.findById(1);
 

@@ -11,9 +11,11 @@ import javax.ws.rs.NotFoundException;
 import java.util.stream.Collectors;
 
 import static com.github.space125.jrtb.command.CommandUtils.getChatId;
+import static org.springframework.util.CollectionUtils.isEmpty;
 
 /**
  * {@link Command} for getting list of {@link GroupSub}
+ *
  * @author Ivan Kurilov on 03.08.2021
  */
 @AllArgsConstructor
@@ -28,7 +30,7 @@ public class ListGroupSubCommand implements Command {
         TelegramUser telegramUser = telegramUserService.findByChatId(getChatId(update))
                 .orElseThrow(NotFoundException::new);
         String message;
-        if(telegramUser.getGroupSubs().isEmpty()){
+        if (isEmpty(telegramUser.getGroupSubs())) {
             message = "Пока нет подписок на группы. Чтобы добавить подписку используй команду /addgroupsub";
         } else {
             String collectedGroup = telegramUser.getGroupSubs().stream()

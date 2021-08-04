@@ -16,6 +16,7 @@ import static java.util.Objects.nonNull;
 @Builder
 @Getter
 public class GroupRequestArgs {
+
     private final String query;
     private final GroupInfoType type;
     private final GroupFilter filter;

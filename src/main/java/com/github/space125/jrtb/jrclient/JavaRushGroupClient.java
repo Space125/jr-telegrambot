@@ -3,7 +3,6 @@ package com.github.space125.jrtb.jrclient;
 import com.github.space125.jrtb.jrclient.dto.GroupDiscussionInfo;
 import com.github.space125.jrtb.jrclient.dto.GroupInfo;
 import com.github.space125.jrtb.jrclient.dto.GroupRequestArgs;
-import com.github.space125.jrtb.jrclient.dto.GroupsCountRequestArgs;
 
 import java.util.List;
 
@@ -13,6 +12,7 @@ import java.util.List;
  * @author Ivan Kurilov on 29.07.2021
  */
 public interface JavaRushGroupClient {
+
     /**
      * Get all the {@link GroupInfo} filtered by provided {@link GroupRequestArgs}.
      *
@@ -32,7 +32,7 @@ public interface JavaRushGroupClient {
     /**
      * Get count of groups filtered by provided {@link GroupRequestArgs}.
      *
-     * @param args provided {@link GroupsCountRequestArgs}.
+     * @param args provided {@link GroupRequestArgs}.
      * @return the count of the group.
      */
     Integer getGroupCount(GroupRequestArgs args);
@@ -44,4 +44,12 @@ public interface JavaRushGroupClient {
      * @return {@link GroupDiscussionInfo} object.
      */
     GroupDiscussionInfo getGroupById(Integer id);
+
+    /**
+     * Find last article ID.
+     *
+     * @param groupSubId provided group subscription ID.
+     * @return last article id.
+     */
+    Integer findLastArticleId(Integer groupSubId);
 }

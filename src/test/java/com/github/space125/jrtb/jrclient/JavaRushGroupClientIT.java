@@ -17,11 +17,14 @@ import static com.github.space125.jrtb.jrclient.dto.GroupInfoType.TECH;
  * @author Ivan Kurilov on 29.07.2021
  */
 @DisplayName("Integration-level testing for JavaRushGroupClientImpl")
-class JavaRushGroupClientTest {
-    private final JavaRushGroupClient groupClient = new JavaRushGroupClientImpl("https://javarush.ru/api/1.0/rest");
+class JavaRushGroupClientIT {
+
+    public static final String JAVARUSH_API_PATH = "https://javarush.ru/api/1.0/rest";
+
+    private final JavaRushGroupClient groupClient = new JavaRushGroupClientImpl(JAVARUSH_API_PATH);
 
     @Test
-    public void shouldProperlyGetGroupsWithEmptyArgs(){
+    void shouldProperlyGetGroupsWithEmptyArgs() {
         //given
         GroupRequestArgs args = GroupRequestArgs.builder().build();
 
@@ -34,7 +37,7 @@ class JavaRushGroupClientTest {
     }
 
     @Test
-    public void shouldProperlyGetWithOffsetAndLimit(){
+    void shouldProperlyGetWithOffsetAndLimit() {
         //given
         GroupRequestArgs args = GroupRequestArgs.builder()
                 .offset(1)
@@ -50,7 +53,7 @@ class JavaRushGroupClientTest {
     }
 
     @Test
-    public void shouldProperlyGetGroupDiscussionsWithEmptyArgs(){
+    void shouldProperlyGetGroupDiscussionsWithEmptyArgs() {
         //given
         GroupRequestArgs args = GroupRequestArgs.builder().build();
 
@@ -63,7 +66,7 @@ class JavaRushGroupClientTest {
     }
 
     @Test
-    public void shouldProperlyGetGroupDiscussionsWithOffsetAndLimit(){
+    void shouldProperlyGetGroupDiscussionsWithOffsetAndLimit() {
         //given
         GroupRequestArgs args = GroupRequestArgs.builder()
                 .offset(1)
@@ -79,7 +82,7 @@ class JavaRushGroupClientTest {
     }
 
     @Test
-    public void shouldProperlyGetGroupCount(){
+    void shouldProperlyGetGroupCount() {
         //given
         GroupRequestArgs args = GroupRequestArgs.builder().build();
 
@@ -91,7 +94,7 @@ class JavaRushGroupClientTest {
     }
 
     @Test
-    public void shouldProperlyGetGroupTECHCount(){
+    void shouldProperlyGetGroupTECHCount() {
         //given
         GroupRequestArgs args = GroupRequestArgs.builder()
                 .type(TECH)
@@ -105,7 +108,7 @@ class JavaRushGroupClientTest {
     }
 
     @Test
-    public void shouldProperlyGetGroupById(){
+    void shouldProperlyGetGroupById() {
         //given
         Integer androidGroupId = 16;
 
@@ -118,5 +121,4 @@ class JavaRushGroupClientTest {
         Assertions.assertEquals(TECH, groupById.getType());
         Assertions.assertEquals("android", groupById.getKey());
     }
-
 }

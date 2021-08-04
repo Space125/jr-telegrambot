@@ -11,6 +11,7 @@ import lombok.ToString;
 @Data
 @ToString
 public class GroupInfo {
+
     private Integer id;
     private String avatarUrl;
     private String createTime;

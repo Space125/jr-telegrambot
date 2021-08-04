@@ -25,12 +25,13 @@ public class HelpCommand implements Command {
 
                     + "Работа с подписками на группы:\n"
                     + "%s - подписаться на группу статей\n"
+                    + "%s - отписаться от группы статей\n"
                     + "%s - получить список групп, на который подписан\n\n"
 
                     + "%s - просмотреть статистику использования\n"
                     + "%s - получить помощь в работе со мной\n",
             START.getCommandName(), STOP.getCommandName(),
-            ADD_GROUP_SUB.getCommandName(), LIST_GROUP_SUB.getCommandName(),
+            ADD_GROUP_SUB.getCommandName(), DEL_GROUP_SUB.getCommandName(), LIST_GROUP_SUB.getCommandName(),
             STAT.getCommandName(), HELP.getCommandName());
 
     @Override

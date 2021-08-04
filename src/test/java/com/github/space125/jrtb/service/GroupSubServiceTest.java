@@ -1,5 +1,6 @@
 package com.github.space125.jrtb.service;
 
+import com.github.space125.jrtb.jrclient.JavaRushGroupClient;
 import com.github.space125.jrtb.jrclient.dto.GroupDiscussionInfo;
 import com.github.space125.jrtb.repository.GroupSubRepository;
 import com.github.space125.jrtb.repository.entity.GroupSub;
@@ -21,29 +22,35 @@ class GroupSubServiceTest {
     private GroupSubRepository groupSubRepository;
     private TelegramUser newUser;
 
-    private final static String CHAT_ID = "1";
+    private final static String CHAT_ID = "1234234";
+    private final static Integer GROUP_ID = 1123;
+    private final static Integer LAST_ARTICLE_ID = 310;
 
     @BeforeEach
     void init() {
         TelegramUserService telegramUserService = Mockito.mock(TelegramUserService.class);
         groupSubRepository = Mockito.mock(GroupSubRepository.class);
-        groupSubService = new GroupSubServiceImpl(telegramUserService, groupSubRepository);
+        JavaRushGroupClient javaRushGroupClient = Mockito.mock(JavaRushGroupClient.class);
+        groupSubService = new GroupSubServiceImpl(telegramUserService, groupSubRepository, javaRushGroupClient);
 
         newUser = new TelegramUser();
         newUser.setChatId(CHAT_ID);
         newUser.setActive(true);
 
         Mockito.when(telegramUserService.findByChatId(CHAT_ID)).thenReturn(Optional.of(newUser));
+
+        Mockito.when(javaRushGroupClient.findLastArticleId(GROUP_ID)).thenReturn(LAST_ARTICLE_ID);
     }
 
     @Test
-    void shouldProperlySaveGroup(){
+    void shouldProperlySaveGroup() {
         //given
         GroupDiscussionInfo groupDiscussionInfo = new GroupDiscussionInfo();
-        groupDiscussionInfo.setId(1);
+        groupDiscussionInfo.setId(GROUP_ID);
         groupDiscussionInfo.setTitle("g1");
 
         GroupSub expectedGroupSub = new GroupSub();
+        expectedGroupSub.setLastArticleId(LAST_ARTICLE_ID);
         expectedGroupSub.setId(groupDiscussionInfo.getId());
         expectedGroupSub.setTitle(groupDiscussionInfo.getTitle());
         expectedGroupSub.addUser(newUser);
@@ -57,7 +64,7 @@ class GroupSubServiceTest {
     }
 
     @Test
-    void shouldProperlyAddUserToExistingGroup(){
+    void shouldProperlyAddUserToExistingGroup() {
         //given
         TelegramUser oldTelegramUser = new TelegramUser();
         oldTelegramUser.setChatId("2");

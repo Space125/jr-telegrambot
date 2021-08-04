@@ -17,10 +17,11 @@ import java.util.Arrays;
  */
 @DisplayName("Unit-level testing for CommandContainer")
 class CommandContainerTest {
+
     private CommandContainer commandContainer;
 
     @BeforeEach
-    public void init() {
+    void init() {
         SendBotMessageService sendBotMessageService = Mockito.mock(SendBotMessageService.class);
         TelegramUserService telegramUserService = Mockito.mock(TelegramUserService.class);
         JavaRushGroupClient javaRushGroupClient = Mockito.mock(JavaRushGroupClient.class);
@@ -29,7 +30,7 @@ class CommandContainerTest {
     }
 
     @Test
-    public void shouldGetTheExistingCommand() {
+    void shouldGetTheExistingCommand() {
         //given-when
         Arrays.stream(CommandName.values())
                 .forEach(commandName -> {
@@ -39,7 +40,7 @@ class CommandContainerTest {
     }
 
     @Test
-    public void shouldReturnedUnknownCommand() {
+    void shouldReturnedUnknownCommand() {
         //given
         String unknownCommand = "/unknownCommand";
 
