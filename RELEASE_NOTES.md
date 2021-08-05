@@ -1,5 +1,10 @@
 # Release Notes
 
+## 0.7.0-SNAPSHOT
+
+* JRTB-10: As an administrator, I want to see bot statistics.
+* JRTB-11: As a user, I want to see documentation for this telegram bot.
+
 ## 0.6.0-SNAPSHOT
 
 * JRTB-4: As a user, I want to get new articles no later than 20 minutes since the article was created.

@@ -31,4 +31,6 @@ public class BotProperties {
     private String recountNewArticle;
 
 
+    private String admins;
+
 }

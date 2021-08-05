@@ -34,4 +34,11 @@ public interface TelegramUserService {
      * @return {@link TelegramUser} with provided chat ID or null otherwise.
      */
     Optional<TelegramUser> findByChatId(String chatId);
+
+    /**
+     * Find all inactive {@link TelegramUser}.
+     *
+     * @return the list of the inactive {@link TelegramUser} objects.
+     */
+    List<TelegramUser> findAllInActiveUsers();
 }
