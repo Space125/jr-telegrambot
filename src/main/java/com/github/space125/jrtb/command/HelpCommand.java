@@ -19,20 +19,19 @@ public class HelpCommand implements Command {
 
     public static final String HELP_MESSAGE = String.format("✨<b>Доступные команды</b>✨\n\n"
 
-                    + "<b>Начать\\закончить работу с ботом</b>\n"
-                    + "%s - начать работу со мной\n"
+                    + "<b>Начать\\закончить работу с ботом:</b>\n"
+                    + "%s - начать/восстановить работу со мной\n"
                     + "%s - приостановить работу со мной\n\n"
 
-                    + "Работа с подписками на группы:\n"
+                    + "<b>Работа с подписками на группы:</b>\n"
                     + "%s - подписаться на группу статей\n"
                     + "%s - отписаться от группы статей\n"
-                    + "%s - получить список групп, на который подписан\n\n"
+                    + "%s - получить список групп, на которые вы подписаны\n\n"
 
-                    + "%s - просмотреть статистику использования\n"
                     + "%s - получить помощь в работе со мной\n",
             START.getCommandName(), STOP.getCommandName(),
             ADD_GROUP_SUB.getCommandName(), DEL_GROUP_SUB.getCommandName(), LIST_GROUP_SUB.getCommandName(),
-            STAT.getCommandName(), HELP.getCommandName());
+            HELP.getCommandName());
 
     @Override
     public void execute(Update update) {

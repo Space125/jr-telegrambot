@@ -8,11 +8,11 @@ import lombok.Getter;
  *
  * @author Ivan Kurilov on 09.07.2021
  */
-
 @AllArgsConstructor
 public enum CommandName {
     START("/start"),
     STOP("/stop"),
+    ADMIN_HELP("/ahelp"),
     HELP("/help"),
     STAT("/stat"),
     ADD_GROUP_SUB("/addgroupsub"),

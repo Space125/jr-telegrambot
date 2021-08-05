@@ -25,15 +25,65 @@ Required software:
 - docker
 - docker-compose
 - directories for environments:
+
+ 1. `<root project>/.env/jrtb-bot.env`
+
+    File contents:
+    ```    
+    - BOT_USERNAME=<username value>
+    - BOT_TOKEN=<token value>
+    - BOT_DB_USERNAME=<db username>
+    - BOT_DB_PASSWORD=<db password>```
+
   
-    <root project>/.env/jrtb.env
-  
-    File contents
-    - BOT_USERNAME=< username value >
-    - BOT_TOKEN=< token value >
+ 2. `<root project>/.env/jrtb-db-prod.env`
+
+    File contents:
+    ```
+    - MYSQL_DATABASE=<db name>
+    - MYSQL_USER=<db username>
+    - MYSQL_PASSWORD=<db user password>
+    - MYSQL_ROOT_PASSWORD=<root password>```
+
 
 to deploy application, switch to needed branch and run bash script:
 
-$ bash start.sh
+$ `bash start.sh`
 
 That's all.
+
+# Local development
+For local development and testing, use `docker-compose-test.yml`.
+Run command:
+```shell
+docker-compose -f docker-compose-test.yml up
+```
+Next step, is to run SpringBoot app with configured **Edit Configuration** in which two env vars are provided:
+
+`bot.token=${token};bot.username=${username}`
+
+File for environments `<root project>/.env/jrtb-db-dev.env`
+   
+  File contents:
+
+    
+     - MYSQL_DATABASE=<db name>
+     - MYSQL_USER=<db username>
+     - MYSQL_PASSWORD=<db user password>
+     - MYSQL_ROOT_PASSWORD=<root password>
+
+
+And add VM Options:
+
+`-Dspring.profiles.active=test `
+
+With these configurations - run SpringBoot main method.
+
+# Technological stack
+- SpringBoot as a skeleton framework
+- Spring Scheduler as a task manager
+- MySQL database as a database for saving user and subscription info
+- Flyway database migration tool
+- Telegram-bot SpringBoot starter
+- Spring Data starter
+- Unirest - lib for working with REST calls
