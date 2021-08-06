@@ -46,10 +46,10 @@ public interface JavaRushGroupClient {
     GroupDiscussionInfo getGroupById(Integer id);
 
     /**
-     * Find last article ID.
+     * Find last post ID.
      *
      * @param groupSubId provided group subscription ID.
-     * @return last article id.
+     * @return last post ID.
      */
-    Integer findLastArticleId(Integer groupSubId);
+    Integer findLastPostId(Integer groupSubId);
 }

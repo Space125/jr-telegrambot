@@ -12,7 +12,7 @@ import java.util.List;
  * @author Ivan Kurilov on 28.07.2021
  */
 @Repository
-public interface TelegramUserRepository extends JpaRepository<TelegramUser, String> {
+public interface TelegramUserRepository extends JpaRepository<TelegramUser, Long> {
     List<TelegramUser> findAllByActiveTrue();
 
     List<TelegramUser> findAllByActiveFalse();

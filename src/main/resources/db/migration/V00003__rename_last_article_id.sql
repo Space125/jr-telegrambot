@@ -1,0 +1,1 @@
+alter table group_sub change column last_article_id last_post_id int;

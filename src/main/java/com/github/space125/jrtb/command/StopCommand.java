@@ -22,7 +22,7 @@ public class StopCommand implements Command {
 
     @Override
     public void execute(Update update) {
-        String chatId = getChatId(update);
+        Long chatId = getChatId(update);
         sendBotMessageService.sendMessage(chatId, STOP_MESSAGE);
         telegramUserService.findByChatId(chatId).ifPresent(
                 user -> {

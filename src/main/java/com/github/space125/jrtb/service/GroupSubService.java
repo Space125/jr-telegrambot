@@ -21,7 +21,7 @@ public interface GroupSubService {
      * @param groupDiscussionInfo provided {@link GroupDiscussionInfo}
      * @return {@link GroupSub} with provided chat ID
      */
-    GroupSub save(String chatId, GroupDiscussionInfo groupDiscussionInfo);
+    GroupSub save(Long chatId, GroupDiscussionInfo groupDiscussionInfo);
 
     /**
      * Save provided {@link GroupSub} entity.

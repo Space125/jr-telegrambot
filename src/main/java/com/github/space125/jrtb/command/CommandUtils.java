@@ -10,13 +10,13 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class CommandUtils {
 
     /**
-     * Retrieve chatId from {@link Update} object.
+     * Find chat ID from {@link Update} object.
      *
      * @param update provided {@link Update}.
      * @return from the provided {@link Update} object.
      */
-    public static String getChatId(Update update) {
-        return update.getMessage().getChatId().toString();
+    public static Long getChatId(Update update) {
+        return update.getMessage().getChatId();
     }
 
     public static String getMessage(Update update) {

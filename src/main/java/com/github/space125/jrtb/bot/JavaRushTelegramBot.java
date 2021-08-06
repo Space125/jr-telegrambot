@@ -61,9 +61,9 @@ public class JavaRushTelegramBot extends TelegramLongPollingBot {
             String username = update.getMessage().getFrom().getUserName();
             if (message.startsWith(COMMAND_PREFIX)) {
                 String commandIdentifier = message.split(SPACE)[0].toLowerCase();
-                commandContainer.retrieveCommand(commandIdentifier, username).execute(update);
+                commandContainer.findCommand(commandIdentifier, username).execute(update);
             } else {
-                commandContainer.retrieveCommand(NO.getCommandName(), username).execute(update);
+                commandContainer.findCommand(NO.getCommandName(), username).execute(update);
             }
         }
     }

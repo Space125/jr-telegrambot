@@ -43,7 +43,7 @@ class StatCommandTest {
         statCommand.execute(prepareUpdate(chatId, STAT.getCommandName()));
 
         //then
-        Mockito.verify(sendBotMessageService).sendMessage(chatId.toString(), String.format(STAT_MESSAGE,
+        Mockito.verify(sendBotMessageService).sendMessage(chatId, String.format(STAT_MESSAGE,
                 statisticDto.getActiveUserCount(),
                 statisticDto.getInactiveUserCount(),
                 statisticDto.getAverageGroupCountByUser(),
