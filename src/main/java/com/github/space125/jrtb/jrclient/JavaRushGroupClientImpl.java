@@ -66,7 +66,7 @@ public class JavaRushGroupClientImpl implements JavaRushGroupClient {
     }
 
     @Override
-    public Integer findLastArticleId(Integer groupSubId) {
+    public Integer findLastPostId(Integer groupSubId) {
         List<PostInfo> posts = Unirest.get(javarushApiPostPath)
                 .queryString("order", "NEW")
                 .queryString("groupKid", groupSubId.toString())

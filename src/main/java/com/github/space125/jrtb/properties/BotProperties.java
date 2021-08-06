@@ -26,9 +26,9 @@ public class BotProperties {
 
 
     /**
-     * Recount of new articles
+     * Recount of new post
      */
-    private String recountNewArticle;
+    private String recountNewPost;
 
 
     private String admins;

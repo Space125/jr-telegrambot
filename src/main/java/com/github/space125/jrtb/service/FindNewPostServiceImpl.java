@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @AllArgsConstructor
-public class FindNewArticleServiceImpl implements FindNewArticleService {
+public class FindNewPostServiceImpl implements FindNewPostService {
 
     private final static String JAVARUSH_WEB_POST_FORMAT = "https://javarush.ru/groups/posts/%s";
 
@@ -25,19 +25,19 @@ public class FindNewArticleServiceImpl implements FindNewArticleService {
     private final SendBotMessageService sendBotMessageService;
 
     @Override
-    public void findNewArticles() {
+    public void findNewPosts() {
         groupSubService.findAll().forEach(groupSub -> {
-            List<PostInfo> newPosts = javaRushPostClient.findNewPosts(groupSub.getId(), groupSub.getLastArticleId());
+            List<PostInfo> newPosts = javaRushPostClient.findNewPosts(groupSub.getId(), groupSub.getLastPostId());
 
-            setNewLastArticleId(groupSub, newPosts);
+            setNewLastPostId(groupSub, newPosts);
 
-            notifySubscribersNewArticles(groupSub, newPosts);
+            notifySubscribersNewPosts(groupSub, newPosts);
         });
     }
 
-    private void notifySubscribersNewArticles(GroupSub groupSub, List<PostInfo> newPosts) {
+    private void notifySubscribersNewPosts(GroupSub groupSub, List<PostInfo> newPosts) {
         Collections.reverse(newPosts);
-        List<String> messagesWithNewArticle = newPosts.stream()
+        List<String> messagesWithNewPosts = newPosts.stream()
                 .map(post -> String.format("✨Вышла новая статья <b>%s</b> в группе <b>%s</b>.✨\n\n" +
                                 "<b>Описание:</b> %s\n\n" +
                                 "<b>Ссылка:</b> %s\n",
@@ -46,17 +46,17 @@ public class FindNewArticleServiceImpl implements FindNewArticleService {
 
         groupSub.getUsers().stream()
                 .filter(TelegramUser::isActive)
-                .forEach(user -> sendBotMessageService.sendMessage(user.getChatId(), messagesWithNewArticle));
+                .forEach(user -> sendBotMessageService.sendMessage(user.getChatId(), messagesWithNewPosts));
     }
 
     private String getPostUrl(String key) {
         return String.format(JAVARUSH_WEB_POST_FORMAT, key);
     }
 
-    private void setNewLastArticleId(GroupSub groupSub, List<PostInfo> newPosts) {
+    private void setNewLastPostId(GroupSub groupSub, List<PostInfo> newPosts) {
         newPosts.stream().mapToInt(PostInfo::getId).max()
                 .ifPresent(id -> {
-                    groupSub.setLastArticleId(id);
+                    groupSub.setLastPostId(id);
                     groupSubService.save(groupSub);
                 });
     }

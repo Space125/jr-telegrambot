@@ -33,7 +33,7 @@ Required software:
     - BOT_USERNAME=<username value>
     - BOT_TOKEN=<token value>
     - BOT_DB_USERNAME=<db username>
-    - BOT_DB_PASSWORD=<db password>```
+    - BOT_DB_PASSWORD=<db password>
 
   
  2. `<root project>/.env/jrtb-db-prod.env`
@@ -43,7 +43,7 @@ Required software:
     - MYSQL_DATABASE=<db name>
     - MYSQL_USER=<db username>
     - MYSQL_PASSWORD=<db user password>
-    - MYSQL_ROOT_PASSWORD=<root password>```
+    - MYSQL_ROOT_PASSWORD=<root password>
 
 
 to deploy application, switch to needed branch and run bash script:

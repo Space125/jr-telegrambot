@@ -15,13 +15,13 @@ public interface SendBotMessageService {
      * @param chatId  provided chatId in which messages would be sent.
      * @param message provided message to be sent.
      */
-    void sendMessage(String chatId, String message);
+    void sendMessage(Long chatId, String message);
 
     /**
-     * Send message with new articles via telegram bot.
+     * Send message with new posts via telegram bot.
      *
      * @param chatId   provided chatId in which messages would be sent.
-     * @param messages provided new articles
+     * @param messages provided new posts.
      */
-    void sendMessage(String chatId, List<String> messages);
+    void sendMessage(Long chatId, List<String> messages);
 }

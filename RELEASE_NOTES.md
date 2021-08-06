@@ -1,5 +1,15 @@
 # Release Notes
 
+## 1.0.0
+Implemented all the logic, planned up to MVP:
+*   User can subscribe on group of posts
+*   User can view list of group subscriptions on which user subscribes
+*   User can unsubscribe from group of posts
+*   User can set an inactive bot and do not receive notifications
+*   User can restart getting notifications
+*   Admin has ability to see bot statistics
+
+
 ## 0.7.0-SNAPSHOT
 
 * JRTB-10: As an administrator, I want to see bot statistics.
